@@ -6,7 +6,7 @@ merged_clean_pool_path=$2
 
 kmer_size=63
 mem_width=75
-mem_height=26
+mem_height=29
 quality_score_threshold=5
 
 memprofpath="/scratch/users/kindr/CompGen/Luda/memprof"
@@ -28,7 +28,7 @@ outpath="${workpath}/outputs/"
 #for datafile in ${workpath}/PBS/qsubs/*Stage1*
 #do
 
-color_id=1
+color_id=2
 
 #sample_list=${outpath}/sample_list
 
@@ -39,7 +39,7 @@ do
       
        echo "#!/bin/bash" > ${qsubpath}/${qsubfile}
        echo "#PBS -N ${qsubname}" >> ${qsubpath}/${qsubfile}
-       echo "#PBS -l nodes=1:ppn=20,walltime=12:00:00" >> ${qsubpath}/${qsubfile}
+       echo "#PBS -l nodes=1:ppn=20,walltime=120:00:00" >> ${qsubpath}/${qsubfile}
        echo "#PBS -M junyuli2@illinois.edu" >> ${qsubpath}/${qsubfile}
        echo "#PBS -m ae" >> ${qsubpath}/${qsubfile}
        echo "#PBS -S /bin/bash" >> ${qsubpath}/${qsubfile}
