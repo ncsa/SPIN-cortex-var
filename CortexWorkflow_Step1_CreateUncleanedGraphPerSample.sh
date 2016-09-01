@@ -76,13 +76,3 @@ do
     fi 
    `chmod g=rw ${qsubpath}/${qsubfile}`
 done
-
-`truncate -s 0 ${outpath}/step2_binarylist_uncleaned`
-`truncate -s 0 ${outpath}/step2_colorlist_uncleaned`
-
-# creating a filelist that lists uncleaned binary files
-echo "ls ${dump_bin_path}/*.ctx >> ${outpath}/step2_binarylist_uncleaned">>${qsubpath}/${qsubfile}
-
-# creating the colorlist that contains the filelist
-echo "echo ${outpath}/step2_binarylist_uncleaned >> ${outpath}/step2_colorlist_uncleaned">>${qsubpath}/${qsubfile}
-

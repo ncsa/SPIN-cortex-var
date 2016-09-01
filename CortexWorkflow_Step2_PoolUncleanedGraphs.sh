@@ -31,6 +31,14 @@ echo "#PBS -e ${logspath}/${qsubname}.err" >> ${qsubpath}/${qsubfile}  # specify
 echo "#PBS -o ${logspath}/${qsubname}.out" >> ${qsubpath}/${qsubfile}  # specify dir for output files
 echo "">>${qsubpath}/${qsubfile}
 
+`truncate -s 0 ${outpath}/step2_binarylist_uncleaned`
+`truncate -s 0 ${outpath}/step2_colorlist_uncleaned`
+
+# creating a filelist that lists uncleaned binary files
+echo "ls ${outpath}/step1_uncleaned_binaries/*.ctx >> ${outpath}/step2_binarylist_uncleaned">>${qsubpath}/${qsubfile}
+
+# creating the colorlist that contains the filelist
+echo "echo ${outpath}/step2_binarylist_uncleaned >> ${outpath}/step2_colorlist_uncleaned">>${qsubpath}/${qsubfile}
 
 echo "${memprof} ${cortex} ${cortex_confg} --dump_binary ${outpath}/step2_pool_cleaned.ctx --dump_covg_distribution ${outpath}/step2_pool_cleaned.ctx.covg --colour_list ${outpath}/step2_colorlist_uncleaned --remove_low_coverage_supernodes 1" >> ${qsubpath}/${qsubfile}
 

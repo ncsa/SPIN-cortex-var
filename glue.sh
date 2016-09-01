@@ -18,7 +18,7 @@ common_PBS="-q big_mem -l nodes=1:ppn=20,walltime=24:00:00 -A aaa -M junyuli2@il
 cortex_path="/projects/bioinformatics/builds/CORTEX_release_v1.0.5.21/"
 common_cortex="--kmer_size 63 --mem_height 26 --mem_width 75"
 
-memprof="/scratch/users/kindr/CompGen/Luda/memprof/memprof.sh"
+memprof=""
 
 # ============================================================
 
