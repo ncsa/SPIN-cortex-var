@@ -9,7 +9,7 @@ memprof=$4
 
 quality_score_threshold=5
 
-cortex=${cortex_path}/bin/cortex_var_63_c4
+cortex=${cortex_path}/bin/cortex_var_63_c15   # see manual for make different version of cortex with desired NUM_COLOR
 
 logspath="${workpath}/PBS/logs"
 `mkdir -p $logspath`
@@ -26,7 +26,7 @@ sample_list=${outpath}/sample_list
 
 
 qsubfile="CortexVar_WorkflowStage5_PoolAllCleaned.qsub"
-qsubname="CV_Step5_PoolAllCleaned"
+qsubname="S5_PoolAllCleaned_Cortex"
 
 
 echo "#!/bin/bash" > ${qsubpath}/${qsubfile}
@@ -41,6 +41,7 @@ echo "">>${qsubpath}/${qsubfile}
 `mkdir -p ${outpath}/step5_binarylists`
 `chmod g=rwx ${outpath}/step5_binarylists`
 
+
 # make binary list for every .ctx, each stands for a unique color
 echo "echo ${outpath}/step2_pool_cleaned.ctx > ${outpath}/step5_binarylists/step5_binarylist_cleaned.pool" >> ${qsubpath}/${qsubfile}
 
@@ -51,7 +52,10 @@ do
 done < ${sample_list}
 
 # make colorlist for cleaned graphs
-echo "echo ${outpath}/step5_binarylists/step5_binarylist_cleaned.pool > ${outpath}/step5_colorlist_cleaned" >> ${qsubpath}/${qsubfile}
+
+echo "echo ${outpath}/step5_binarylist.REF > ${outpath}/step5_colorlist_cleaned" >> ${qsubpath}/${qsubfile} 
+
+echo "echo ${outpath}/step5_binarylists/step5_binarylist_cleaned.pool >> ${outpath}/step5_colorlist_cleaned" >> ${qsubpath}/${qsubfile}    # append to the colorlist containing REF binary list
 
 while read sample
 do

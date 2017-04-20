@@ -3,7 +3,7 @@
 
 # This step creates a reference graph.
 
-ref_file=$1
+ref_path=$1
 workpath=$2
 cortex_path=$3
 cortex_confg=$4
@@ -21,12 +21,17 @@ outpath="${workpath}/outputs"
 `mkdir -p ${outpath}`
 `chmod g=rwx ${outpath}`
 
-qsubname="CV_Step4_CreateRefGraph"
+qsubname="S4_CreateRefGraph_Cortex"
 qsubfile="CortexVar_WorkflowStage4_CreateRefGraph.qusb"
 `truncate -s 0 ${qsubpath}/${qsubfile}`
 
 ref_selist="${outpath}/step4_ref_selist"
-echo ${ref_file}>${ref_selist}
+`truncate -s 0 ${ref_selist}`
+
+for chromosome in ${ref_path}/GCF_000004515.4_Glycine_max_v2.0_genomic.*.fna
+do
+	echo ${chromosome}>>${ref_selist}
+done
 
 echo "#!/bin/bash" > ${qsubpath}/${qsubfile}
 echo "#PBS -N ${qsubname} " >> ${qsubpath}/${qsubfile}  # set name of jobappend to existing file 

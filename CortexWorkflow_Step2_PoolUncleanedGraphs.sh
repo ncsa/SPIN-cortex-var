@@ -19,7 +19,7 @@ logspath="${workpath}/PBS/logs"
 qsubpath="${workpath}/PBS/qsubs"
 outpath=${workpath}/outputs
 
-qsubname="CV_Step2_Pool_Wash"
+qsubname="S2_Pool_Wash_Cortex"
 qsubfile="CortexVar_WorkflowStage2_Pool_Wash.qsub"
 `truncate -s 0 ${qsubpath}/${qsubfile}`
 

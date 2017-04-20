@@ -42,17 +42,27 @@ dump_bin_path="${outpath}/step1_uncleaned_binaries"
 
 `truncate -s 0 ${outpath}/sample_list`
 
-#for datafile in ${datapath}/*G*/*fq /projects/bioinformatics/HudsonSoybeanProject/SoySequence_notNAM/SRR1302624/*
-for datafile in ${datapath}/*Magellan* ${datapath}/*Maverick*
+# 1) if simply go through all samples in certain folder, only one for loop is needed
+#	for datafile in ${datapath}/*G*/*fq
+
+# 2) if having a list of sample, located in different subdirectories of $datapath
+#	list sample names as an array
+
+sample_alias_list=("U03" "PI518_751" "PI437_169B" "LG03-2979" "PI561_370" "LD00-3309" "PI427_136" "IA" "LG03-3191" "LG05-4292" "TN05-3027" "PI404_188A")
+
+for sample_alias in "${sample_alias_list[@]}"
 do
+	for datafile in ${datapath}/*G*/*${sample_alias}*	# get all the samples that contain the keyword from the array
+	do
+
     filename=`basename ${datapath}/${datafile}` # basename extracts the name after the last /
     fullname=${filename%_*}
     sample_id=${fullname#*_}
     qsubfile=CortexVar_WorkflowStage1_CreateGraph_${sample_id}.qsub
-    qsubname=CV_Step1_${sample_id}
+    qsubname=S1_${sample_id}_Cortex
   
-  if grep -Fxq "$sample_id" ${outpath}/sample_list
- 
+  if grep -Fxq "$sample_id" ${outpath}/sample_list	# if exact same sample name existed in the list. noted the sample_list is also used as an input to further cortex steps
+
     then
        echo "${datafile}" >> ${outpath}/step1_selist.${sample_id}
  
@@ -75,4 +85,5 @@ do
 #========================================================
     fi 
    `chmod g=rw ${qsubpath}/${qsubfile}`
+	done
 done

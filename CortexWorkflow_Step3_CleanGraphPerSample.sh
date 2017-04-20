@@ -37,7 +37,7 @@ while read line
 do
        sample_id=$line
        qsubfile=CortexVar_WorkflowStage3_${sample_id}.qsub
-       qsubname=CV_Step3_${sample_id}
+       qsubname=S3_${sample_id}_Cortex
 
        echo "#!/bin/bash" > "${qsubpath}/${qsubfile}"
        #echo "#PBS -W depend=afterok:${qsubpath}/CortexVar_WorkflowStage2_Pool_Wash.qsub" >> ${qsubpath}/${qsubfile} 
