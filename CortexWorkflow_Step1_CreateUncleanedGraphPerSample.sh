@@ -48,7 +48,7 @@ dump_bin_path="${outpath}/step1_uncleaned_binaries"
 # 2) if having a list of sample, located in different subdirectories of $datapath
 #	list sample names as an array
 
-sample_alias_list=("U03" "PI518_751" "PI437_169B" "LG03-2979" "PI561_370" "LD00-3309" "PI427_136" "IA" "LG03-3191" "LG05-4292" "TN05-3027" "PI404_188A")
+sample_alias_list=("LD01-5907" "LG90-2550" "LG94-1128" "LG97-7012" "LG98-1605" "5M20-2-5-2" "CL0J173-6-8" "LD02-4485" "LD02-9050" "LG00-3372" "LG04-6000" "LG94-1906" "NE3001" "S06-13640" "Skylla" "4J105-3-4" "CL0J095-4-6" "HS6-3976" "LG04-4717" "LG05-4317" "LG05-4464" "LG05-4832" "LG92-1255" "PI507_681B" "Prohio" "PI574_486")
 
 for sample_alias in "${sample_alias_list[@]}"
 do
