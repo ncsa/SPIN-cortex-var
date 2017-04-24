@@ -1,0 +1,28 @@
+This workflow can be used to get more information on the calls that cortex is classifying as variants and repeats. 
+In order to run the workflow, the classify calls step must be run after step6 in the main workflow is run, and a reference genome for your species should be available
+
+
+Important: The directory should be the full path to where you put the downstream workflow directory
+
+To run the workflow:
+use format in the example qsub_template file
+
+
+The output of this downstream workflow:
+'repeats_and_vars' containing the call classification file with calls classified as errors removed 
+'repeats_and_vars/fastas' with fasta files for each sample containing the repeat and variant branch sequences
+'repeats_and_vars/fastas/blast_results' with an xml blastout file and a plaintext output file for each sample
+'blasted_and_parsed_cortex_calls' containing tsv files for each sample with:
+ 	branch_name
+	call_type
+	cortex_quality_score
+	branch_len
+	branch1-branch2_len_differnce
+	top_hsp	
+	num_hsps
+	sequence_entropy
+	sequence_GC_content
+
+Two temporary directories will be created:
+	'anisimov_containers' for the anisimov launcher
+	'Cortex_calls_only_sequences' used in creating the fasta files

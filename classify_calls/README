@@ -1,0 +1,3 @@
+These scripts were written for path divergence output using the soybean reference genome. If this is not the case for you, they can be executed manually for the time being, see the options in the cortex manual. I will update them to make them universal soon.
+
+Use these scripts to classify cortex calls as repeats, variants, or errors

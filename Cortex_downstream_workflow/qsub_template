@@ -1,0 +1,19 @@
+#!/bin/bash
+#PBS -N 
+#PBS -l 
+#PBS -M 
+#PBS -m 
+#PBS -S 
+#PBS -A 
+#PBS -q 
+
+#####Arugments for the command line#####
+#$1 path to cortex calls step6 output
+#$2 directory is where the downstream workflow is
+#$3 Path to the classified variants TSV files generated in the last Cortex step
+#$4 number of samples. I reccommend not more than the number of cores availablet that you are using
+#$5 full path to reference genome fasta
+
+
+
+/path/to/cortex_downstream.sh /path/to/outputs/step6_PathDivergence /path/to/Cortex_downstream_workflow /path/to/classifed_calls num_samples /path/to/reference/reference.fa
